@@ -1,0 +1,5 @@
+<div class="row">
+        <div *ngFor="let video of videos">
+                <iframe [src]="('https://www.youtube.com/embed/' + video.videoURL) | safe"></iframe>
+              </div>
+</div>

@@ -1,7 +1,6 @@
+import { AuthenticationService } from './../shared/_services/authentication.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
-// import { User } from '../_models/index';
-// import { UserService } from '../_services/index';
 
 @Component({
     moduleId: module.id,
@@ -9,25 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeComponent implements OnInit {
-    // currentUser: User;
-    // users: User[] = [];
 
     constructor(
-        // private userService: UserService
-    ) {
-        // this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        private router: Router,
+        private authenticationService: AuthenticationService
+    ) { }
+
+    ngOnInit() { }
+
+    logout(event: any) {
+        this.authenticationService.logout();
+        this.router.navigate(['/login']);
     }
-
-    ngOnInit() {
-        debugger;
-        // this.loadAllUsers();
-    }
-
-    // deleteUser(id: number) {
-    //     this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
-    // }
-
-    // private loadAllUsers() {
-    //     this.userService.getAll().subscribe(users => { this.users = users; });
-    // }
 }
