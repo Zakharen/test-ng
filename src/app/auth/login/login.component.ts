@@ -3,13 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AlertService, AuthenticationService } from './../../shared/_services/index';
 
+import { User } from '../../shared/_models/index';
+
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html'
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
+    model: User = new User();
     loading = false;
     returnUrl: string;
 
@@ -21,25 +23,20 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
         // reset login status
         this.authenticationService.logout();
-        debugger;
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
-        debugger;
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
                 data => {
-                    debugger;
                     this.router.navigate([this.returnUrl]);
                 },
-                error => {
-                    debugger;
+                error => {;
                     this.alertService.error(error);
                     this.loading = false;
                 });

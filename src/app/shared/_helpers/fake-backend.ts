@@ -2,7 +2,7 @@ import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } fr
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOptions) {
-    debugger;
+
     // array in local storage for registered users
     let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
 
@@ -10,7 +10,7 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
     backend.connections.subscribe((connection: MockConnection) => {
         // wrap in timeout to simulate server api call
         setTimeout(() => {
-            debugger;
+
             // authenticate
             if (connection.request.url.endsWith('/api/authenticate') && connection.request.method === RequestMethod.Post) {
                 // get parameters from post request
@@ -61,7 +61,6 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
                     let urlParts = connection.request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     let matchedUsers = users.filter(user => {
-                        debugger;
                         return user.id === id;
                     });
                     let user = matchedUsers.length ? matchedUsers[0] : null;
@@ -81,7 +80,6 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
 
                 // validation
                 let duplicateUser = users.filter(user => {
-                    debugger;
                     return user.username === newUser.username;
                 }).length;
 

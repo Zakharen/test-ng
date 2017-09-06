@@ -9,7 +9,6 @@ export class AlertService {
     private keepAfterNavigationChange = false;
 
     constructor(private router: Router) {
-        debugger;
         // clear alert message on route change
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
@@ -25,13 +24,11 @@ export class AlertService {
     }
 
     success(message: string, keepAfterNavigationChange = false) {
-        debugger;
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         this.subject.next({ type: 'success', text: message });
     }
 
     error(message: string, keepAfterNavigationChange = false) {
-        debugger;
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         this.subject.next({ type: 'error', text: message });
     }
