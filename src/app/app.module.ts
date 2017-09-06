@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AuthModule } from './auth/auth.module';
+import { HomeModule } from './home/home.module';
 
 import { routing } from './app.routing';
 
@@ -25,13 +26,16 @@ import {
 // used to create fake backend
 import { fakeBackendProvider } from './shared/_helpers/index';
 
-import { HomeComponent } from './home/index';
 import { AlertComponent } from './shared/_directives/index';
+// import { SafePipe } from './shared/_pipes/index';
+
+// add material
+// import { MaterialModule } from '@angular/material';
+// import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     AlertComponent
   ],
   imports: [
@@ -39,6 +43,7 @@ import { AlertComponent } from './shared/_directives/index';
     FormsModule,
     HttpModule,
     AuthModule,
+    HomeModule,
     routing
   ],
   providers: [
