@@ -11,7 +11,6 @@ export class AuthenticationService {
     login(username: string, password: string) {
         return this.http.post('/api/authenticate', JSON.stringify({ username: username, password: password }))
             .map((response: Response) => {
-                debugger;
                 // login successful if there's a jwt token in the response
                 let user = response.json();
                 if (user && user.token) {
@@ -22,7 +21,6 @@ export class AuthenticationService {
     }
 
     logout() {
-        debugger;
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
     }
