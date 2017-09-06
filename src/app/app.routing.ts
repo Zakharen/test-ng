@@ -15,6 +15,11 @@ const appRoutes: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
         children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'media'
+            },
             { path: 'media', component: MediaComponent },
             { path: 'user', component: UserComponent }
         ]
