@@ -31,6 +31,7 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
                             username: user.username,
                             firstName: user.firstName,
                             lastName: user.lastName,
+                            joined: user.joined,
                             token: 'fake-jwt-token'
                         }
                     })));
@@ -89,6 +90,7 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
 
                 // save new user
                 newUser.id = users.length + 1;
+                newUser.joined = new Date().toISOString().slice(0, 10);
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
 
@@ -110,6 +112,8 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
                             // delete user
                             users.splice(i, 1);
                             localStorage.setItem('users', JSON.stringify(users));
+                            // clear storage
+                            localStorage.removeItem('currentUser');
                             break;
                         }
                     }

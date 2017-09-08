@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AlertService, AuthenticationService } from './../../shared/_services/index';
+import { AlertService } from './../../shared/_services/index';
+import { AuthenticationService } from './../authentication.service';
 
 import { User } from '../../shared/_models/index';
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
                 data => {
                     this.router.navigate([this.returnUrl]);
                 },
-                error => {;
+                error => {
                     this.alertService.error(error);
                     this.loading = false;
                 });

@@ -1,0 +1,12 @@
+<div class="card text-center">
+    <div class="card-header">
+        <h1>Hi {{currentUser.firstName}}!</h1>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">{{currentUser.firstName}} {{currentUser.lastName}}</h4>
+        <span><strong>Joined us</strong></span> {{currentUser.joined}}
+    </div>
+    <div class="card-footer text-muted">
+         <a class="drop-user" (click)="deleteUser(currentUser.id)"><strong>Delete</strong></a>
+    </div>
+</div>
