@@ -8,9 +8,15 @@ import { MediaComponent } from './media/index';
 import { UserComponent } from './user/index';
 
 import { SafePipe } from './../shared/_pipes/index';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule],
+    imports: [
+      CommonModule,
+      RouterModule,
+      FormsModule,
+      AsyncLocalStorageModule
+    ],
     declarations: [
         HomeComponent,
         MediaComponent,
