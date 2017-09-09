@@ -14,9 +14,16 @@ describe('AuthenticationService', () => {
     let subject: AuthenticationService;
     let backend: MockBackend;
 
-    const regUser = {
+    const user = {
         username: 'user',
         password: 'secret'
+    };
+
+    const userToRegister = {
+        username: 'user1',
+        password: 'password1',
+        firstName: 'User1',
+        lastName: 'User1'
     };
 
     beforeEach(() => {
@@ -42,14 +49,14 @@ describe('AuthenticationService', () => {
         backend = mockBackend;
     }));
 
-    it('AuthS. should be allowed for registered user', (done) => {
+    it('should be allowed for registered user', (done) => {
         backend.connections.subscribe((connection: MockConnection) => {
 
             expect(connection.request.method).toEqual(RequestMethod.Post);
-            expect(connection.request.getBody()).toEqual(JSON.stringify(regUser));
+            expect(connection.request.getBody()).toEqual(JSON.stringify(user));
 
             const options = new ResponseOptions({
-              body: regUser
+              body: user
             });
 
             connection.mockRespond(new Response(options));
@@ -58,7 +65,7 @@ describe('AuthenticationService', () => {
 
         subject
             .login('user', 'secret').subscribe((response: any) => {
-                expect(response).toEqual(regUser);
+                expect(response).toEqual(user);
                 done();
         });
     });
