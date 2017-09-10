@@ -18,7 +18,6 @@ import { routing } from './app.routing';
 
 import { AuthGuard } from './shared/_guards/auth.guard';
 import {
-    AuthenticationService,
     AlertService,
     UserService
   } from './shared/_services/index';
@@ -48,7 +47,6 @@ import { AlertComponent } from './shared/_directives/index';
   ],
   providers: [
     AuthGuard,
-    AuthenticationService,
     AlertService,
     UserService,
     // providers used to create fake backend

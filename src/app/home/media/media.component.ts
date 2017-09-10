@@ -14,7 +14,5 @@ export class MediaComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() {
-        debugger;
-    }
+    ngOnInit() { }
 }

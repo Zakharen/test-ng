@@ -7,7 +7,7 @@ import { RegisterComponent } from './auth/register/index';
 
 import { HomeComponent } from './home/index';
 import { MediaComponent } from './home/media/index';
-import { UserComponent } from './home/user/index';
+import { ProfileComponent } from './home/profile/index';
 
 const appRoutes: Routes = [
     {
@@ -15,8 +15,13 @@ const appRoutes: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard],
         children: [
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'media'
+            },
             { path: 'media', component: MediaComponent },
-            { path: 'user', component: UserComponent }
+            { path: 'profile', component: ProfileComponent }
         ]
     },
     { path: 'login', component: LoginComponent },

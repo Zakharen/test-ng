@@ -3,9 +3,11 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
+import { AuthModule } from './../auth/auth.module';
+
 import { HomeComponent } from './index';
 import { MediaComponent } from './media/index';
-import { UserComponent } from './user/index';
+import { ProfileComponent } from './profile/index';
 
 import { SafePipe } from './../shared/_pipes/index';
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
@@ -15,12 +17,13 @@ import { AsyncLocalStorageModule } from 'angular-async-local-storage';
       CommonModule,
       RouterModule,
       FormsModule,
+      AuthModule,
       AsyncLocalStorageModule
     ],
     declarations: [
         HomeComponent,
         MediaComponent,
-        UserComponent,
+        ProfileComponent,
         SafePipe
     ],
     exports: [CommonModule, FormsModule, RouterModule]

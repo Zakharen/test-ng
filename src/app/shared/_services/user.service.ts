@@ -30,7 +30,6 @@ export class UserService {
     // private helper methods
 
     private jwt() {
-        debugger;
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {

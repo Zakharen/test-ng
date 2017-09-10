@@ -5,6 +5,7 @@ import { AlertService } from '../_services/index';
 @Component({
     moduleId: module.id,
     selector: 'alert',
+    styleUrls: ['./alert.component.css'],
     templateUrl: 'alert.component.html'
 })
 
@@ -14,7 +15,6 @@ export class AlertComponent implements OnInit {
     constructor(private alertService: AlertService) { }
 
     ngOnInit() {
-        debugger;
         this.alertService.getMessage().subscribe(message => { this.message = message; });
     }
 }
