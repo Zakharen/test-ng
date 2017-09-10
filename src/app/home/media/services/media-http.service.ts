@@ -9,7 +9,7 @@ import {UserMediaUrls} from '../models/user-media-urls.model';
 export class MediaHttpService {
 
   private storageKey = 'mediaUrls';
-  private mediaUrls: Array<UserMediaUrls>;
+  private mediaUrls = new Array<UserMediaUrls>();
   private currentUserName: string;
 
   constructor(protected storage: AsyncLocalStorage) {
@@ -23,8 +23,41 @@ export class MediaHttpService {
     });
   }
   public get(): Array<MediaUrl> {
-    const userData = this.mediaUrls.filter(i => i.userName === this.currentUserName)[0];
+    const userName = this.getUserName();
+    this.mediaUrls = JSON.parse(localStorage.getItem(this.storageKey));
+    if (!this.mediaUrls) {
+       this.mediaUrls = new Array<UserMediaUrls>();
+    }
+    let userData = this.mediaUrls.filter(i => i.userName === userName)[0];
+    if (!userData) {
+      userData = new UserMediaUrls();
+      userData.userName = userName;
+      this.mediaUrls.push(userData);
+    }
     return userData.mediaUrls;
+
+
+/*    this.storage.getItem(this.storageKey).subscribe((data) => {
+      if (!data) {
+        data = new Array<UserMediaUrls>();
+      }
+      this.mediaUrls = data;
+      let userData = this.mediaUrls.filter(i => i.userName === userName)[0];
+      if (!userData) {
+        userData = new UserMediaUrls();
+        userData.userName = userName;
+        this.mediaUrls.push(userData);
+      }
+      return userData;
+    }, () => {
+      this.mediaUrls = new Array<UserMediaUrls>();
+
+      const userData = new UserMediaUrls();
+      userData.userName = userName;
+      this.mediaUrls.push(userData);
+    });*/
+
+
   }
   public getById(id: number): MediaUrl {
     const userUrls = this.get();
@@ -34,7 +67,11 @@ export class MediaHttpService {
 
   public create(mediaUrl: MediaUrl) {
     const userMediaUrls = this.get();
-    mediaUrl.Id = userMediaUrls[userMediaUrls.length - 1].Id || 1;
+    if (userMediaUrls.length > 0) {
+      mediaUrl.Id = userMediaUrls[userMediaUrls.length - 1].Id + 1;
+    } else {
+      mediaUrl.Id = 1;
+    }
     userMediaUrls.push(mediaUrl);
     this.saveStorage();
   }
@@ -55,6 +92,9 @@ export class MediaHttpService {
   }
 
   private saveStorage(): void {
-    this.storage.setItem(this.storageKey, this.mediaUrls).subscribe();
+    localStorage.setItem(this.storageKey, JSON.stringify(this.mediaUrls));
+  }
+  private getUserName (): string {
+    return JSON.parse(localStorage.getItem('currentUser')).username;
   }
 }

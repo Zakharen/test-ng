@@ -32,6 +32,9 @@ import { AlertComponent } from './shared/_directives/index';
 // import { MaterialModule } from '@angular/material';
 // import 'hammerjs';
 
+import { AddMediaComponent } from './home/media/add-media.component';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,9 @@ import { AlertComponent } from './shared/_directives/index';
     HttpModule,
     AuthModule,
     HomeModule,
-    routing
+    routing,
+    BrowserModule,
+    BootstrapModalModule
   ],
   providers: [
     AuthGuard,
@@ -54,6 +59,7 @@ import { AlertComponent } from './shared/_directives/index';
     MockBackend,
     BaseRequestOptions
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddMediaComponent]
 })
 export class AppModule { }
