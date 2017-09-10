@@ -14,15 +14,16 @@ describe('AuthenticationService', () => {
     let subject: AuthenticationService;
     let backend: MockBackend;
 
-    let responseForm = '<form />';
+    const user = {
+        username: 'user',
+        password: 'secret'
+    };
 
-    const regUser = {
-        data: [
-            {
-                username: 'user',
-                password: 'secret'
-            }
-        ]
+    const userToRegister = {
+        username: 'user1',
+        password: 'password1',
+        firstName: 'User1',
+        lastName: 'User1'
     };
 
     beforeEach(() => {
@@ -48,20 +49,14 @@ describe('AuthenticationService', () => {
         backend = mockBackend;
     }));
 
-    it('AuthS. should be called with proper arguments', (done) => {
+    it('should be allowed for registered user', (done) => {
         backend.connections.subscribe((connection: MockConnection) => {
-            console.log('>>> ', JSON.parse(connection.request.getBody()));
+
             expect(connection.request.method).toEqual(RequestMethod.Post);
-            expect(connection.request.getBody()).toEqual(JSON.stringify(
-                {
-                    username: 'user',
-                    password: 'secret'
-                }
-            ));
-            // expect(connection.request.detectContentType()).toEqual(ResponseContentType.Json);
+            expect(connection.request.getBody()).toEqual(JSON.stringify(user));
 
             const options = new ResponseOptions({
-              body: responseForm
+              body: user
             });
 
             connection.mockRespond(new Response(options));
@@ -70,7 +65,7 @@ describe('AuthenticationService', () => {
 
         subject
             .login('user', 'secret').subscribe((response: any) => {
-                expect(response._body).toEqual(responseForm);
+                expect(response).toEqual(user);
                 done();
         });
     });

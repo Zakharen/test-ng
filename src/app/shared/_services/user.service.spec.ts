@@ -1,8 +1,9 @@
+import { User } from './../_models/user';
 import { fakeBackendProvider } from './../_helpers/fake-backend';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { HttpXhrBackend } from '@angular/common/http';
 import { UserService } from './user.service';
-import { Http, Response, HttpModule, ResponseOptions, BaseRequestOptions } from '@angular/http';
+import { Http, Response, HttpModule, ResponseOptions, BaseRequestOptions, RequestMethod } from '@angular/http';
 import { TestBed, inject, async } from '@angular/core/testing';
 
 describe('UserService', () => {
@@ -10,7 +11,7 @@ describe('UserService', () => {
     let subject: UserService;
     let backend: MockBackend;
 
-    const profileInfo = {
+    const user = {
         id: 1,
         username: 'user1',
         password: 'password1',
@@ -72,21 +73,23 @@ describe('UserService', () => {
         backend = mockBackend;
     }));
 
-    it('US. should get profile data of user', (done) => {
+    it('should get profile data of user', (done) => {
         backend.connections.subscribe((connection: MockConnection) => {
-            const options = new ResponseOptions({ body: profileInfo });
+            const options = new ResponseOptions({ body: user });
 
             connection.mockRespond(new Response(options));
         });
 
         subject.getById(1).subscribe((response) => {
-          expect(response).toEqual(profileInfo);
+          expect(response).toEqual(user);
           done();
         });
     });
 
-    it('US. should get all users', (done) => {
+    it('should get all users', (done) => {
         backend.connections.subscribe((connection: MockConnection) => {
+            expect(connection.request.method).toEqual(RequestMethod.Get);
+
             const options = new ResponseOptions({ body: JSON.stringify(users) });
 
             connection.mockRespond(new Response(options));
@@ -98,6 +101,56 @@ describe('UserService', () => {
             expect(_resp[0].id).toEqual(1);
             expect(_resp[1].id).toEqual(2);
             expect(_resp[2].id).toEqual(3);
+            done();
+        });
+    });
+
+    it('should create user', (done) => {
+        backend.connections.subscribe((connection: MockConnection) => {
+            // check method type
+            expect(connection.request.method).toEqual(RequestMethod.Post);
+
+            const options = new ResponseOptions({ body: JSON.stringify(user) });
+            connection.mockRespond(new Response(options));
+        });
+
+        const _user: any = {
+            username: 'user1',
+            password: 'password1',
+            firstName: 'User1',
+            lastName: 'User1'
+        };
+
+        subject.create(_user).subscribe((response: any) => {
+            expect(response).toEqual(user);
+            done();
+        });
+    });
+
+    it('should update user', (done) => {
+        backend.connections.subscribe((connection: MockConnection) => {
+            // check method type
+            expect(connection.request.method).toEqual(RequestMethod.Put);
+            const options = new ResponseOptions({ body: JSON.stringify(user) });
+            connection.mockRespond(new Response(options));
+        });
+
+        subject.update(user).subscribe((response: any) => {
+            expect(response).toEqual(user);
+            done();
+        });
+    });
+
+    it('should delete user', (done) => {
+        backend.connections.subscribe((connection: MockConnection) => {
+            // check method type
+            expect(connection.request.method).toEqual(RequestMethod.Delete);
+            const options = new ResponseOptions({ body: JSON.stringify(user) });
+            connection.mockRespond(new Response(options));
+        });
+
+        subject.delete(user.id).subscribe((response: any) => {
+            expect(response.id).toEqual(user.id);
             done();
         });
     });
