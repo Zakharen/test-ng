@@ -32,7 +32,7 @@ import { AlertComponent } from './shared/_directives/index';
 // import { MaterialModule } from '@angular/material';
 // import 'hammerjs';
 
-import { AddMediaComponent } from './home/media/add-media.component';
+import { AddMediaComponent } from './home/media/add-media/add-media.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 @NgModule({
