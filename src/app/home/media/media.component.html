@@ -1,15 +1,24 @@
+<div class="row" class="media-actions">
+    <div class="col-md-4">
+        <button [disabled]="" (click)="showAddMediaModal()" class="btn btn-primary">Add</button>        
+        <button [disabled]="" (click)="removeCurrentMedia()" class="btn btn-primary">Remove current</button>
+    </div>
+    <div class="col-md-8"></div>
+</div>
 
-<button [disabled]="" (click)="showAddMediaModal()" class="btn btn-primary">Add</button>
-
-<button [disabled]="" (click)="removeCurrentMedia()" class="btn btn-primary">Remove current</button>
-
-<carousel [(activeSlide)]="activeSlideIndex">
-  <slide *ngFor="let item of mediaData">
-    <img *ngIf="item.ContentType === 'Image'"  [src]="item.Url" />
-    <iframe *ngIf="item.ContentType === 'Video'"
-            width="854" height="480"
-            frameborder="0" allowfullscreen
-            [src]="item.Url | safe" ></iframe>
-
-  </slide>
-</carousel>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <carousel [(activeSlide)]="activeSlideIndex">
+            <slide *ngFor="let item of mediaData">
+              <img *ngIf="item.ContentType === 'Image'"  [src]="item.Url" />
+              <iframe *ngIf="item.ContentType === 'Video'"
+                      width="854" height="480"
+                      frameborder="0" allowfullscreen
+                      [src]="item.Url | safe" ></iframe>
+          
+            </slide>
+          </carousel>
+    </div>
+    <div class="col-md-1"></div>
+</div>

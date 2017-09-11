@@ -4,7 +4,8 @@
     </div>
     <div class="card-body">
         <h4 class="card-title">{{currentUser.firstName}} {{currentUser.lastName}}</h4>
-        <span><strong>Joined us</strong></span> {{currentUser.joined}}
+        <span><strong>Media list: </strong></span> {{currentUser.mediaFilesNumber}}<br>
+        <span><strong>Joined us </strong></span> {{currentUser.joined}}
     </div>
     <div class="card-footer text-muted">
          <a class="drop-user" (click)="deleteUser(currentUser.id)"><strong>Delete</strong></a>
