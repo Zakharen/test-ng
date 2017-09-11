@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 import { User } from './../../shared/_models/index';
 import { UserService } from './../../shared/_services/index';
-import { AuthenticationService } from './../../auth/authentication.service';
+import { AuthenticationService } from './../../auth/services/authentication.service';
+import { MediaHttpService } from './../media/services/media-http.service';
 
 @Component({
     moduleId: module.id,
@@ -18,10 +19,11 @@ export class ProfileComponent implements OnInit {
     constructor(
         private userService: UserService,
         private authenticationService: AuthenticationService,
-        private router: Router
+        private router: Router,
+        private mediaService: MediaHttpService
     ) {
-        debugger;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.currentUser.mediaFilesNumber = this.mediaService.get().length || 0;
     }
 
     ngOnInit() { }

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
-import { AuthenticationService } from './index';
+import { AuthenticationService } from './services/authentication.service';
 
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';

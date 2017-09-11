@@ -3,12 +3,12 @@ import { AlertService } from './../../shared/_services/index';
 import { AddMediaComponent } from './add-media.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { MediaUrl } from './models/media-url.model';
-import {MediaHttpService} from './services/media-http.service';
+import { MediaHttpService } from './services/media-http.service';
 
 @Component({
   moduleId: module.id,
-  templateUrl: 'media.component.html',
-  providers: [MediaHttpService]
+  styleUrls: ['./media.component.css'],
+  templateUrl: 'media.component.html'
 })
 
 export class MediaComponent implements OnInit {

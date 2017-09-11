@@ -3,11 +3,11 @@ import { HttpXhrBackend } from '@angular/common/http';
 import { Http, HttpModule, Response, ResponseOptions, BaseRequestOptions, RequestMethod } from '@angular/http';
 import { inject, TestBed } from '@angular/core/testing';
 
-import { fakeBackendProvider } from './../shared/_helpers/index';
+import { fakeBackendProvider } from './../../shared/_helpers/index';
 
 import { AuthenticationService } from './authentication.service';
 
-import { User } from './../shared/_models/index';
+import { User } from './../../shared/_models/index';
 
 describe('AuthenticationService', () => {
 

@@ -15,6 +15,8 @@ import { AsyncLocalStorageModule } from 'angular-async-local-storage';
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+import { MediaHttpService } from './media/services/media-http.service';
+
 @NgModule({
     imports: [
       CommonModule,
@@ -31,7 +33,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
         SafePipe,
         AddMediaComponent
     ],
-    exports: [CommonModule, FormsModule, RouterModule]
+    exports: [CommonModule, FormsModule, RouterModule],
+    providers: [ MediaHttpService ]
   })
   export class HomeModule {
   }
