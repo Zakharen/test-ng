@@ -8,16 +8,28 @@ import { AuthModule } from './../auth/auth.module';
 import { HomeComponent } from './index';
 import { MediaComponent } from './media/index';
 import { ProfileComponent } from './profile/index';
+import { AddMediaComponent } from './media/add-media.component';
 
 import { SafePipe } from './../shared/_pipes/index';
+import { AsyncLocalStorageModule } from 'angular-async-local-storage';
+
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule, AuthModule],
+    imports: [
+      CommonModule,
+      RouterModule,
+      FormsModule,
+      AuthModule,
+      AsyncLocalStorageModule,
+      CarouselModule.forRoot()
+    ],
     declarations: [
         HomeComponent,
         MediaComponent,
         ProfileComponent,
-        SafePipe
+        SafePipe,
+        AddMediaComponent
     ],
     exports: [CommonModule, FormsModule, RouterModule]
   })
