@@ -8,7 +8,7 @@ import { AuthModule } from './../auth/auth.module';
 import { HomeComponent } from './index';
 import { MediaComponent } from './media/index';
 import { ProfileComponent } from './profile/index';
-import { AddMediaComponent } from './media/add-media.component';
+import { AddMediaComponent } from './media/add-media/add-media.component';
 
 import { SafePipe } from './../shared/_pipes/index';
 import { AsyncLocalStorageModule } from 'angular-async-local-storage';
