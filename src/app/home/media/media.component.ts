@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from './../../shared/_services/index';
-import { AddMediaComponent } from './add-media.component';
+import { AddMediaComponent } from './add-media/add-media.component';
 import { DialogService } from 'ng2-bootstrap-modal';
 import { MediaUrl } from './models/media-url.model';
 import { MediaHttpService } from './services/media-http.service';
